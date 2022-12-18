@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("Repko/305432",[peoplecontroller::class,'index']);
+Route::get("Repko/305432/people",[peoplecontroller::class,'index']);
