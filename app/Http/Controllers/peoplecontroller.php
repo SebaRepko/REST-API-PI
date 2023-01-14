@@ -1,50 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class peoplecontroller extends Controller
 {
+    
     public function index()
     {
-        $people = people::all();
-        return peopleresource::collection($people);
+        $results = DB::select('SELECT * from people');
+        return $results;
     }
 
-    public function show(people $people)
+    public function show($id)
     {
-        //
-    }
-
-    public function edit(people $people)
-    {
-        //
-    }
-
-    public function update(peoplerequest $request, Post $people)
-    {
-        $people->update($request->all());
-        
-        return new peopleresource($people);
-    }
-
-    public function destroy(Post $people)
-    {
-        $post->delete();
-
-        return response(null, 204);
-    }
-
-    public function store(peoplerequest $request)
-    {
-        $people = people::create($request->all());
-        
-        return new peopleresource($people);
+        $results = DB::select('SELECT * from people WHERE id = ?',array($id));
+        return $results;
     }
 
     public function create()
     {
-        //
+        $values = array('Imie' => 'Dayle', 'Nazwisko' => 'Kopenhagen', 'Ulica' => 'Słoneczna', 'Miasto' => 'Warszawa', 'Kraj' => 'Polska', 'Nr_telefonu' => 6163162 );
+        $results = DB::table('people')-> insert($values);
     }
+
+    public function update($id)
+    {
+        DB::select('UPDATE people SET Imie = ? WHERE id = ?',array('Jasiu', $id));
+    }
+
+    public function destroy($id)
+    {
+        $results = DB::select('DELETE FROM people WHERE id = ?',array($id));
+        return $results;
+    }
+    
 }

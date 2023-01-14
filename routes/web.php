@@ -14,8 +14,8 @@ use App\Http\Controllers\peoplecontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get("Repko/305432/people",[peoplecontroller::class,'index']);
+Route::get("Repko/305432/people/{id}",[peoplecontroller::class,'show']);
+Route::get("Repko/305432/people/create",[peoplecontroller::class,'create']);
+Route::get("Repko/305432/people/update/{id}",[peoplecontroller::class,'update']);
+Route::get("Repko/305432/people/delete/{id}",[peoplecontroller::class,'destroy']);
